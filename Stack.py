@@ -1,3 +1,5 @@
+# Author: AG
+
 class Node:
     def __init__(self,n):
         self.value = n
