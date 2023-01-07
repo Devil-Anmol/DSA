@@ -97,6 +97,45 @@ public class SortingAlgos {
             }
         }
     }
+    public static void QuickSort(int arr[]){
+        int len = arr.length;
+        if(len<=1){
+            return ;
+        }
+        int s=1,l=len-1;
+        while(l>s){
+            while(arr[s]<=arr[0] && s<len-1){
+                s++;
+            }
+            while(arr[l]>arr[0] && l>=0){
+                l--;
+            }
+            if(l>s){
+                int temp = arr[l];
+                arr[l]=arr[s];
+                arr[s]=temp;
+            }
+        }
+        int temp = arr[0];
+        arr[0]=arr[l];
+        arr[l]=temp;
+        int arr1[] = new int[l];
+        for(int i=0;i<l;i++){
+            arr1[i]=arr[i];
+        }
+        int arr2[] = new int[len-l-1];
+        for(int i=0;i<len-l-1;i++){
+            arr2[i]=arr[l+1+i];
+        }
+        QuickSort(arr1);
+        QuickSort(arr2);
+        for(int i=0;i<l;i++){
+            arr[i]=arr1[i];
+        }
+        for(int i=0;i<len-l-1;i++){
+            arr[l+1+i]=arr2[i];
+        }
+    }
 
     public static void SelectionSort(int[] arr){
         int len = arr.length;
@@ -135,7 +174,7 @@ public class SortingAlgos {
         int[] arr = {5,2,6,8,4,3};
         int[] arr2 = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,25,16};
         double start = System.nanoTime();
-        SelectionSort(arr2);
+        QuickSort(arr2);
         double end = System.nanoTime();
         PrintArray(arr2);
         System.out.println((end-start)/1000000000.0);
